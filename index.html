@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login de Trabajadores</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2 id="form-title">Registrar nuevo trabajador</h2>
+
+    <!-- FORMULARIO DE REGISTRO -->
+    <form id="registerForm" method="POST" action="/register">
+      <input type="text" name="username" placeholder="Usuario" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="text" name="puesto" placeholder="Puesto de trabajo" required>
+      <button type="submit">Registrar</button>
+    </form>
+
+    <!-- FORMULARIO DE INICIO DE SESIÓN -->
+    <form id="loginForm" method="POST" action="/login" style="display: none;">
+      <input type="text" name="username" placeholder="Usuario" required><br><br>
+      <input type="password" name="password" placeholder="Contraseña" required><br><br>
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <!-- LINK DE CAMBIO -->
+    <p id="toggle-link">
+      ¿Ya tienes cuenta? <a href="#" onclick="toggleForms()">Iniciar sesión</a>
+    </p>
+  </div>
+
+  <script>
+    function toggleForms() {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const title = document.getElementById('form-title');
+      const toggleText = document.getElementById('toggle-link');
+
+      if (registerForm.style.display === "none") {
+        registerForm.style.display = "block";
+        loginForm.style.display = "none";
+        title.textContent = "Registrar nuevo trabajador";
+        toggleText.innerHTML = '¿Ya tienes cuenta? <a href="#" onclick="toggleForms()">Iniciar sesión</a>';
+      } else {
+        registerForm.style.display = "none";
+        loginForm.style.display = "block";
+        title.textContent = "Iniciar sesión";
+        toggleText.innerHTML = '¿No tienes cuenta? <a href="#" onclick="toggleForms()">Registrarse</a>';
+      }
+    }
+  </script>
+</body>
+</html>
